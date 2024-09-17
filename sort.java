@@ -6,6 +6,43 @@ public class sort {
         selectionSort(arr);
         System.out.println(Arrays.toString(arr));
     }
+//Quick Sort
+    static void quickSort(int[] arr,int l,int h){
+          if(l<h){
+              int j = partition(arr,l,h);
+              quickSort(arr,l,j);
+              quickSort(arr,j+1,h);
+          }
+    }
+    static int partition(int[] arr, int l, int h){
+        int pivot = arr[l];
+        int i = l;
+        int j = h;
+        while(i<j){
+
+            do{
+                i++;
+            }while(i < arr.length && arr[i]<=pivot );
+
+            do{
+                if(arr[j] < pivot){
+                   break;
+                }
+                j--;
+            }while(arr[j]>pivot);
+            if(i<j){
+                swap(arr,i,j);
+            }
+        }
+        swap(arr,l,j);
+        return j;
+    }
+    static void swap(int[] arr, int i, int j){
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+  
   //MergeSort
     static void mergeSort(int[] arr, int l, int h){
         if(l<h){
